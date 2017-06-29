@@ -1,3 +1,5 @@
+'use strict';
+
 /*! ECMAScript2015(ES6).js © yamoo9.net, 2017 */
 
 // [Babel](http://babeljs.io/)
@@ -26,13 +28,13 @@ var ko = 'Korean';
 // let, const를 사용하게 되면서 블록 영역까지 사용 가능
 
 // 상수 constant
-const DOG_TO_HUMAN = 7;
+var DOG_TO_HUMAN = 7;
 
 {
   var airplain = '항공기';
-  let trailer = '트레일러';
+  var _trailer = '트레일러';
   console.log(airplain); // airplain
-  console.log(trailer); // _trailer
+  console.log(_trailer); // _trailer
   console.log(DOG_TO_HUMAN);
   // let trailer = '트레일ㄹ러러러러';
 }
@@ -44,7 +46,6 @@ var airplain = '에어플레인';
 console.log(airplain); // airplain
 console.log(trailer); // trailer
 console.log(DOG_TO_HUMAN);
-
 
 ////////////////////////
 // String Additions   //
@@ -61,18 +62,16 @@ var yamoo9 = {};
 yamoo9.ui = {};
 
 // 생성자
-yamoo9.ui.Carousel = function() {};
+yamoo9.ui.Carousel = function () {};
 
 // 생성자.프로토타입
 yamoo9.ui.Carousel.prototype = {
   constructor: yamoo9.ui.Carousel,
-  init: function() {},
-  destory: function() {},
-  update: function() {},
-  render: function() {}
+  init: function init() {},
+  destory: function destory() {},
+  update: function update() {},
+  render: function render() {}
 };
-
-
 
 //////////////////////
 // Array Additions  //
@@ -86,13 +85,9 @@ yamoo9.ui.Carousel.prototype = {
 //////////////////////
 
 
-
-
 //////////////////////
 // Template Strings //
 //////////////////////
-
-
 
 
 ////////////////////
@@ -100,13 +95,9 @@ yamoo9.ui.Carousel.prototype = {
 ////////////////////
 
 
-
-
 ////////////////////////
 // Default Parameters //
 ////////////////////////
-
-
 
 
 ///////////////////////////////
@@ -114,13 +105,9 @@ yamoo9.ui.Carousel.prototype = {
 ///////////////////////////////
 
 
-
-
 /////////////////////////
 // Object Enhancements //
 /////////////////////////
-
-
 
 
 ///////////////////////////
@@ -128,13 +115,9 @@ yamoo9.ui.Carousel.prototype = {
 ///////////////////////////
 
 
-
-
 ////////////////////////////
 // ECMAScript2015 Modules //
 ////////////////////////////
-
-
 
 
 ///////////////////
@@ -142,13 +125,9 @@ yamoo9.ui.Carousel.prototype = {
 ///////////////////
 
 
-
-
 //////////////////////////////////
 // Module Bundling with Webpack //
 //////////////////////////////////
-
-
 
 
 /////////////
@@ -156,18 +135,11 @@ yamoo9.ui.Carousel.prototype = {
 /////////////
 
 
-
-
 //////////
 // Sets //
 //////////
 
 
-
-
 ////////////////
 // Generators //
 ////////////////
-
-
-
