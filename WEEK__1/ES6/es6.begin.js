@@ -6,6 +6,9 @@
 // [Airbnb JavaScript 스타일 가이드](https://github.com/tipjs/javascript-style-guide)
 // [ESDoc: 문서화 도구](https://esdoc.org/)
 
+// ——————————————————————————————————————
+// ECMA Script 2015 (v6)
+// ——————————————————————————————————————
 
 ////////////////
 // let, const //
