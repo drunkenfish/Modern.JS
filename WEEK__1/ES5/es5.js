@@ -30,7 +30,7 @@ obj = {};
 // 1-3-1) 값 복사(pass by value)
 // 원시 데이터 유형: 숫자 값, 문자 값, 논리 값, null, undefined
 
-console.group('값 복사 예시');
+console.groupCollapsed('값 복사 예시');
 
 var copyed_data = num; // 값 복사
 
@@ -46,7 +46,7 @@ console.groupEnd('값 복사 예시');
 // 1-3-2) 값 참조(pass by reference)
 // 참조 데이터 유형: 함수 객체, 배열 객체, 객체
 
-console.group('값 참조 예시');
+console.groupCollapsed('값 참조 예시');
 
 var ref_data = arr; // []
 
@@ -82,6 +82,8 @@ console.groupEnd('값 참조 예시');
 
 // typeof는 배열 데이터를 정확하게 검증하지 못한다.
 // typeof는 null도 정확하게 검증하지 못한다.
+console.groupCollapsed('typeof의 문제점');
+
 
 function id(name) {
   // 매개변수 데이터 타입 검증
@@ -99,7 +101,9 @@ function id(name) {
 function copyArray(data) {
   // 매개변수 조건: 반드시 data 배열이어야 한다.
   // if ( !data || typeof data !== 'array' ) {
-  if ( !data || (typeof data === 'object' && !data.length) ) {
+  // if ( !data || (typeof data === 'object' && !data.length) ) {
+  // if ( !data || !(data instanceof Array) ) {
+  if ( !data || !Array.isArray(data) ) {
     throw '전달인자는 배열이어야만 합니다.';
   }
   return data.slice();
@@ -113,18 +117,98 @@ var wishlist = copyArray( origin_data );
 
 console.log(wishlist);
 
+console.groupEnd('typeof의 문제점');
 
-// 2-2) 데이터 타입 검증 방법 instanceof
+
+// 2-2) 데이터 타입 검증 방법 객체 instanceof
 // 참고: https://goo.gl/3w3EEw
+
+// JAVA 에서는...
+// 붕어빵 틀 : 클래스(Class)란?
+// 붕어빵    : 인스턴스(Instance)란?
+
+// JavaScript 에서는...
+// 생성자(Constructor)
+// 객체(Object)
+
+// 객체 생성 구문 JAVA와 흡사
+// var instance = new Class()
+
+// 객체(인스턴스) instanceof 생성자(클래스)
+console.groupCollapsed('instanceof 는 올바르게 데이터 검증하는가?');
+
+console.log( 'origin_data instanceof Array:', origin_data instanceof Array ); // true
+console.log( 'origin_data instanceof Object:', origin_data instanceof Object ); // true
+
+console.groupEnd('instanceof 는 올바르게 데이터 검증하는가?');
 
 
 // 2-3) 데이터 타입 검증 방법 .constructor 속성
 // 참고: https://goo.gl/RqAF6f
 
+// JavaScript의 모든 객체는 반드시 .constructor 속성을 가진다.
+console.groupCollapsed('constructor 사용 예시');
+
+console.log('num.constructor:', num.constructor === Number);
+console.log('str.constructor:', str.constructor === String);
+console.log('boo.constructor:', boo.constructor === Boolean);
+console.log('fnc.constructor:', fnc.constructor === Function);
+console.log('arr.constructor:', arr.constructor === Array);
+console.log('obj.constructor:', obj.constructor === Object);
+
+console.groupEnd('constructor 사용 예시');
+
 
 // 2-4) 데이터 타입 검증 방법 직접 만든 유틸리티 함수
 
+console.group('사용자 정의 데이터 타입 검증 유틸리티 함수 type()');
 
+// JavaScript는 동적 형지정 언어로 많은 허점을 가진다.
+// JavaScript가 제공하는 데이터 유형 검증 방법은 모두 완벽하지 않다.
+// 하여 사용자가 직접 올바르게 데이터 유형을 검증할 수 있는 유틸리티 함수를 만들어야 한다.
+function type(data) {
+  // 검증 결과 반환 (소문자 문자열로 반환)
+  return Object.prototype.toString.call(data).slice(8,-1).toLowerCase();
+}
+function isNumber(data)   { return type(data) === 'number';   }
+function isString(data)   { return type(data) === 'string';   }
+function isBoolean(data)  { return type(data) === 'boolean';  }
+function isFunction(data) { return type(data) === 'function'; }
+function isArray(data)    { return type(data) === 'array';    }
+function isObject(data)   { return type(data) === 'object';   }
+
+// DOM API
+// - HTMLCollection
+// - Nodelist
+// - Node 객체
+//   - document.ELEMENT_NODE
+//   - document.ATTRIBUTE_NODE
+//   - document.TEXT_NODE
+//   - document.COMMENT_NODE
+//   - document.DOCTYPE_NODE
+//   - document.DOCUMENT_NODE
+
+function isElementNode(data) {
+
+  // 문, Statement
+  // 문은 값을 반환할 수 없다.
+  // if ( data && data.nodeType === document.ELEMENT_NODE ) {
+  //   return true;
+  // } else {
+  //   return false;
+  // }
+
+  // 식, Expression
+  // 식은 연산(계산)되어 최종적으로 값을 도출한다.
+  return data && data.nodeType === document.ELEMENT_NODE;
+
+}
+function isNodeList(data) {
+  var data_type = type(data);
+  return data && (data_type === 'htmlcollection' || data_type === 'nodelist');
+}
+
+console.groupEnd('사용자 정의 데이터 타입 검증 유틸리티 함수 type()');
 
 
 
