@@ -213,9 +213,9 @@ console.groupEnd('사용자 정의 데이터 타입 검증 유틸리티 함수 t
 
 
 
-////////////////////////////
-// 3. JavaScript 구문, 표현식
-////////////////////////////
+//////////////////////////////////
+// 3. JavaScript 구문(문), 표현식(식)
+//////////////////////////////////
 
 
 // 3-1) 구문(Statement)
@@ -247,6 +247,24 @@ console.groupEnd('사용자 정의 데이터 타입 검증 유틸리티 함수 t
 
 
 // 4-1) 영역(Scope)
+
+// 전역: Global Scope
+// 지역: Local Scope
+// Block Scope를 가지지 않는 JavaScript
+
+console.groupCollapsed('JavaScript 함수 영역과 블록문 영역');
+
+{
+  // 변수 선언
+  // var 키워드를 사용하면 블록문({}) 내부는 영역이 되지 않는다.
+  // 단, let 키워드를 사용하면, ES6 환경에서는 블록문 내부에 별도의 영역을 생성한다.
+  var c = 'C';
+}
+
+console.log(c); // is not defined
+
+console.groupEnd('JavaScript 함수 영역과 블록문 영역');
+
 
 // 4-1-1) 라이프 사이클(Life Cycle)
 
