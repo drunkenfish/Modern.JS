@@ -1,3 +1,5 @@
+'use strict';
+
 /*! ECMAScript2015(ES6).js © yamoo9.net, 2017 */
 
 // [Babel](http://babeljs.io/)
@@ -19,7 +21,7 @@
 // 변수와 다르게 상수는
 // 선언과 값 할당이 한 라인에서 동시에 이루어져야 한다.
 // 그렇지 않을 경우, 컴파일 오류가 발생한다.
-const ROOT = window;
+var ROOT = window;
 // ROOT = window;
 
 var course_name = '모던 자바스크립트 환경 구성';
@@ -30,13 +32,13 @@ var course_name = '모던 자바스크립트 환경 구성';
   // var는 선언, 초기화가 동시에 이루어집니다.
 
   // let 변수 선언 > 초기화
-  let course_name;
+  var _course_name = void 0;
 
   // 선언, 초기화된 변수에 값을 할당
-  course_name = 'Modern JavaScript';
+  _course_name = 'Modern JavaScript';
   // 상수(Constant)는 런타임(실행) 중에 변형되지 않는 데이터 저장소
   // 이름 작성 규칙에서 상수는 모두 대문자로 작성합니다.
-  const ROOT = document.querySelector('html');
+  var _ROOT = document.querySelector('html');
 }
 
 // var    VS    let
@@ -52,7 +54,7 @@ function scope() {
   // console.log(local_variable); // undefined
   local_variable = '지역 내 변수';
 
-  let l_v; // 선언
+  var l_v = void 0; // 선언
   // console.log(l_v); // Error
   l_v = 'let을 사용한 지역 변수';
   // l_vv = [];
@@ -74,9 +76,6 @@ scope();
 // 함부로 누군가에 의해서 변질되는 것을 막을 수 있다.
 
 
-
-
-
 ////////////////////////
 // String Additions   //
 ////////////////////////
@@ -85,8 +84,6 @@ scope();
 // string.endsWith()   //
 // string.repeat()     //
 ////////////////////////
-
-
 
 
 //////////////////////
@@ -104,17 +101,17 @@ scope();
 //////////////////////
 
 // forEach  VS  map
-let data = [1, 3, 6, 9, 13];
+var data = [1, 3, 6, 9, 13];
 
-let each_data = data.forEach(function(item){
-  let r = item * item;
+var each_data = data.forEach(function (item) {
+  var r = item * item;
   return r;
 });
 
 console.log('each_data:', each_data);
 
-let map_data = data.map(function(item){
-  var r = item*item;
+var map_data = data.map(function (item) {
+  var r = item * item;
   return r;
 });
 
@@ -122,7 +119,7 @@ console.log('map_data:', map_data);
 
 // map  VS  filter
 
-let filter_data = data.filter(function(item){
+var filter_data = data.filter(function (item) {
   return item % 3 === 0; // 조건 값의 결과가 참인 것을 필터링(걸러내기)하여 새로운 배열 반환
 });
 
@@ -130,28 +127,27 @@ console.log('filter_data:', filter_data);
 
 // filter  VS  find
 
-let find_data = data.find(function(item){
+var find_data = data.find(function (item) {
   return item % 3 === 0; // 조건이 참인 첫번째 매칭 결과 값을 반환
 });
 
 console.log('find_data:', find_data);
 
-Array.prototype.findMatch = function(condition, index) {
-  if ( typeof condition !== 'function' || typeof index !== 'number' ) {
+Array.prototype.findMatch = function (condition, index) {
+  if (typeof condition !== 'function' || typeof index !== 'number') {
     throw '전달인자는 함수, 숫자 순입니다.';
   }
-  var collection = this.filter(function(item){
-    if (condition(item)) { return item; }
+  var collection = this.filter(function (item) {
+    if (condition(item)) {
+      return item;
+    }
   });
   return collection[index];
 };
 
-
 //////////////////////
 // Template Strings //
 //////////////////////
-
-
 
 
 ////////////////////
@@ -159,13 +155,9 @@ Array.prototype.findMatch = function(condition, index) {
 ////////////////////
 
 
-
-
 ////////////////////////
 // Default Parameters //
 ////////////////////////
-
-
 
 
 ///////////////////////////////
@@ -173,13 +165,9 @@ Array.prototype.findMatch = function(condition, index) {
 ///////////////////////////////
 
 
-
-
 /////////////////////////
 // Object Enhancements //
 /////////////////////////
-
-
 
 
 ///////////////////////////
@@ -187,13 +175,9 @@ Array.prototype.findMatch = function(condition, index) {
 ///////////////////////////
 
 
-
-
 ////////////////////////////
 // ECMAScript2015 Modules //
 ////////////////////////////
-
-
 
 
 ///////////////////
@@ -201,13 +185,9 @@ Array.prototype.findMatch = function(condition, index) {
 ///////////////////
 
 
-
-
 //////////////////////////////////
 // Module Bundling with Webpack //
 //////////////////////////////////
-
-
 
 
 /////////////
@@ -215,18 +195,11 @@ Array.prototype.findMatch = function(condition, index) {
 /////////////
 
 
-
-
 //////////
 // Sets //
 //////////
 
 
-
-
 ////////////////
 // Generators //
 ////////////////
-
-
-
