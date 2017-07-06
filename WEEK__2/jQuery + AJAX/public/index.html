@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="ko-KR">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,17 +12,22 @@
     .app.container {
       margin: 1rem 2rem;
     }
-    .memo > * {
+
+    .memo>* {
       margin-bottom: 10px;
     }
+
     .memo .textarea {
       width: 100%;
     }
+
     .memo-item-container .memo-item {
       background-color: transparent;
     }
+
   </style>
 </head>
+
 <body>
 
   <div class="app container is-fluid">
@@ -31,12 +37,7 @@
           <label class="sr-only" for="memo-title">메모 제목</label>
           <input class="input" type="text" id="memo-title" placeholder="메모 제목">
           <label class="sr-only" for="memo-content">메모 내용</label>
-          <textarea
-            class="textarea"
-            id="memo-content"
-            cols="30"
-            rows="10"
-            placeholder="메모 내용"></textarea>
+          <textarea class="textarea" id="memo-content" cols="30" rows="10" placeholder="메모 내용"></textarea>
           <div class="field is-group">
             <button type="button" class="is-save button is-primary is-outlined is-small">
               <span class="icon is-small">
@@ -54,12 +55,23 @@
         </div>
       </div>
       <div class="column is-9">
-        <div class="memo-item-container columns is-multiline"></div>
+        <div class="memo-item-container columns is-multiline">
+          <article class="memo-item column is-3 message is-primary">
+            <div class="message-header">
+              <h5 class="memo-item-title">메모 제목</h5>
+              <button type="button" class="delete" aria-label="메모 아이템 제거"></button>
+            </div>
+            <div class="message-body">
+              <p class="memo-item-content">메모 내용</p>
+            </div>
+          </article>
+        </div>
       </div>
     </div>
   </div>
 
-<script src="./js/jquery-3.2.1.min.js"></script>
-<script src="./js/memo-app.js"></script>
+  <script src="./js/jquery-3.2.1.min.js"></script>
+  <script src="./js/memo-app.js"></script>
 </body>
+
 </html>
