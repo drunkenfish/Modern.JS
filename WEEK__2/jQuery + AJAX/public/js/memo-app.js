@@ -22,7 +22,6 @@
     // 이벤트 바인딩
     bind();
   };
-
   // 애플리케이션 UI를 그리는 함수
   let render = () => {
     // Server로부터 데이터 로드(GET)
@@ -53,7 +52,6 @@
       memo_container.html(memo_template);
     });
   };
-
   // DOM 객체에 이벤트 연결
   let bind = () => {
     $.each(memo_buttons, function(index){
@@ -64,16 +62,26 @@
     // 이벤트 위임(Delegation)
     memo_container.on('click', 'button.delete', removeMemo);
   };
-  // 메모를 제거하는 함수
-  let removeMemo = (e) => {
-    var remove_id = e.target.dataset.removeId;
-    // 서버에 DELETE 메서드를 사용하여 메모 제거 요청
-    // $.delete() 형태로 jQuery 확장
-    $.delete(`${rest_api}/${remove_id}`, () => render());
-  };
   // 사용자가 메모 입력 버튼, 입력 취소 버튼을 눌렀을 때 감지되는 함수
   let detectButton = function() {
     this.hasClass('is-save') ? saveMemo.call(this) : cancelInput.call(this);
+  };
+  // 사용자 입력 내용을 검증하는 함수
+  let validateInput = (input_content, textarea_content) => {
+    // input 검증
+    if ( $.trim(input_content) === '' ) {
+      global.alert('메모 제목을 올바르게 입력해주세요.');
+      input.focus(); // 사용자에게 입력을 요하는 영역으로 포커스 이동
+      return false; // 오류이기에 거짓을 반환
+    }
+    // textaerea 검증
+    if ( $.trim(textarea_content) === '' ) {
+      global.alert('메모 내용을 올바르게 입력해주세요.');
+      textarea.focus(); // 사용자에게 입력을 요하는 영역으로 포커스 이동
+      return false; // 오류이기에 거짓을 반환
+    }
+    // 결과 반환
+    return true;
   };
   // 사용자 입력한 메모 값인 객체를 서버에 전송 (문자화)
   let saveMemo = function() {
@@ -95,22 +103,12 @@
       cancelInput();
     });
   };
-  // 사용자 입력 내용을 검증하는 함수
-  let validateInput = (input_content, textarea_content) => {
-    // input 검증
-    if ( $.trim(input_content) === '' ) {
-      global.alert('메모 제목을 올바르게 입력해주세요.');
-      input.focus(); // 사용자에게 입력을 요하는 영역으로 포커스 이동
-      return false; // 오류이기에 거짓을 반환
-    }
-    // textaerea 검증
-    if ( $.trim(textarea_content) === '' ) {
-      global.alert('메모 내용을 올바르게 입력해주세요.');
-      textarea.focus(); // 사용자에게 입력을 요하는 영역으로 포커스 이동
-      return false; // 오류이기에 거짓을 반환
-    }
-    // 결과 반환
-    return true;
+  // 메모를 제거하는 함수
+  let removeMemo = (e) => {
+    var remove_id = e.target.dataset.removeId;
+    // 서버에 DELETE 메서드를 사용하여 메모 제거 요청
+    // $.delete() 형태로 jQuery 확장
+    $.delete(`${rest_api}/${remove_id}`, () => render());
   };
   // 사용자가 입력한 내용을 지움
   let cancelInput = function() {
