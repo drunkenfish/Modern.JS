@@ -6,6 +6,9 @@
       $input = $demo.find('.user-input'),
       $print = $demo.find('.print-input');
 
+  $input.val(data.title);
+  $print.text(data.title);
+
   $input.on('keyup', updateData);
 
   function updateData(e) {
