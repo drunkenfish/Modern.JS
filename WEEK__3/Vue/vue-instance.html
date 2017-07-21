@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ko-KR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Vue 객체 - Vue.js 학습</title>
+  <link rel="stylesheet" href="https://unpkg.com/font-awesome@4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://unpkg.com/bulma@0.4.3/css/bulma.css">
+  <style>
+  .app {
+    margin-top: 40px;
+    min-height: 100vh;
+  }
+  </style>
+</head>
+<body>
+
+  <div class="app container">
+    <div class="columns">
+      <div class="column">
+        <button class="button is-warning" type="button" v-on:click="increaseCount">
+          <span class="icon is-small"><i class="fa fa-plus"></i></span>
+          <span>Count Up</span>
+        </button>
+        <button class="button" type="button" v-on:click="decreaseCount">
+          <span class="icon is-small"><i class="fa fa-minus"></i></span>
+          <span>Count Down</span>
+        </button>
+      </div>
+      <div class="column">
+        <p class="box">Count: <strong>{{count}}</strong></p>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/vue.js"></script>
+
+  <script>
+    (function(global, Vue){
+      'use strict';
+
+      new Vue({
+        el: '.app',
+        data: {
+          count: 100
+        },
+        methods: {
+          increaseCount: function(){
+            this.count++;
+          },
+          decreaseCount: function(){
+            this.count--;
+          }
+        }
+      });
+
+    }(window, window.Vue));
+  </script>
+</body>
+</html>

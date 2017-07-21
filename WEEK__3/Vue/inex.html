@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ko-KR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>설치 - Vue.js 학습</title>
+</head>
+<body>
+
+  <!-- 2-WAY Data Binding 구현: 사용자가 입력하면 뷰가 업데이트, 데이터 또한 업데이트 -->
+
+  <!-- Vanilla, jQuery -->
+  <div class="demo">
+    <h2>Vanilla & jQuery Version</h2>
+    <label for="user_input">데이터</label>
+    <input id="user_input" type="text" class="user-input" placeholder="데이터를 입력해주세요">
+    <p class="print">사용자가 입력한 데이터는 <span class="print-input">...</span> 입니다.</p>
+  </div>
+
+  <hr>
+
+  <!-- Vue -->
+  <div class="demo-vue">
+    <h2>Vue.js Version</h2>
+    <label for="user_input_vue">데이터</label>
+    <input
+      v-model="data.title"
+      id="user_input_vue"
+      type="text"
+      class="user-input" placeholder="데이터를 입력해주세요">
+    <p class="print">사용자가 입력한 데이터는 {{data.title}} 입니다.</p>
+  </div>
+
+
+  <!-- CDN 데이터 로드 -->
+  <script src="//unpkg.com/jquery@3.2.1/dist/jquery.min.js"></script>
+  <!-- <script src="//unpkg.com/vue"></script> -->
+
+  <!-- 로컬 데이터 로드 -->
+  <script src="js/vue.js"></script>
+
+  <!-- 로컬 스크립트 파일 로드 -->
+   <script src="js/data.js"></script>
+    <script src="js/vanilla-v.js"></script>
+   <!-- <script src="js/jquery-v.js"></script> -->
+  <script src="js/vue-v.js"></script>
+
+</body>
+</html>
